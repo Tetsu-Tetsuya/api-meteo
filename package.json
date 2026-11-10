@@ -1,0 +1,18 @@
+{
+  "name": "api-meteo",
+  "version": "1.0.0",
+  "description": "Painel meteorológico com API Gateway e microsserviços Express (Open-Meteo)",
+  "private": true,
+  "type": "commonjs",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node scripts/iniciar-todos.js",
+    "start:gateway": "node gateway/index.js",
+    "start:localizacao": "node servicos/localizacao/index.js",
+    "start:meteorologia": "node servicos/meteorologia/index.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

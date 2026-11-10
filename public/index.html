@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Monitoramento Meteorológico</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⛅</text></svg>" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topo">
+    <span class="marca">◉ METEO / PAINEL</span>
+    <nav>
+      <a href="#clima">Clima</a>
+      <a href="#comparacao">Comparação</a>
+      <a href="#historico">Histórico</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="intro" id="clima">
+      <p class="sobretitulo">Dados do tempo · em tempo real</p>
+      <h1>Monitoramento Meteorológico</h1>
+      <p>Descubra as condições atuais e acompanhe a previsão dos próximos cinco dias para cidades do mundo todo.</p>
+    </section>
+
+    <section class="cartao">
+      <form id="form-busca" novalidate>
+        <label for="cidade">Qual cidade você quer consultar?</label>
+        <input id="cidade" name="cidade" type="text" maxlength="100" placeholder="Ex.: Salvador" autocomplete="off" />
+        <button type="submit">Consultar</button>
+        <p class="dica">Experimente Salvador, Recife ou uma cidade de outro país.</p>
+      </form>
+
+      <div id="escolha" hidden>
+        <p class="status-ok" id="total-localidades"></p>
+        <label for="localidades">Escolha a localidade correta</label>
+        <select id="localidades"></select>
+        <button type="button" id="ver-clima">Ver clima</button>
+      </div>
+
+      <p id="mensagem" class="mensagem" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="resultado" class="cartao" hidden>
+      <div class="cabecalho-resultado">
+        <div>
+          <h2 id="r-local"></h2>
+          <p class="sutil" id="r-coordenadas"></p>
+          <p class="sutil" id="r-horario"></p>
+        </div>
+        <button type="button" id="atualizar" class="secundario" title="Buscar dados novamente">↻ Atualizar</button>
+      </div>
+
+      <div class="atual">
+        <span class="icone-grande" id="r-icone"></span>
+        <div>
+          <p class="temperatura" id="r-temperatura"></p>
+          <p id="r-descricao"></p>
+        </div>
+      </div>
+
+      <dl class="metricas">
+        <div><dt>Sensação térmica</dt><dd id="r-sensacao"></dd></div>
+        <div><dt>Umidade</dt><dd id="r-umidade"></dd></div>
+        <div><dt>Vento</dt><dd id="r-vento"></dd></div>
+        <div><dt>Índice UV</dt><dd id="r-uv"></dd></div>
+      </dl>
+
+      <h3>Próximos cinco dias</h3>
+      <ol class="previsao" id="r-previsao"></ol>
+
+      <h3>Temperaturas por dia</h3>
+      <div id="grafico" class="grafico"></div>
+    </section>
+
+    <section class="cartao" id="historico">
+      <h2>Consultas recentes</h2>
+      <p class="sutil">As últimas cinco cidades consultadas.</p>
+      <ul id="lista-historico" class="historico"><li class="sutil">Nenhuma cidade consultada ainda.</li></ul>
+    </section>
+
+    <section class="cartao" id="comparacao">
+      <h2>Compare duas cidades</h2>
+      <p class="sutil">Consulte cidades acima e escolha duas para comparar as mínimas e máximas.</p>
+      <div class="duas-colunas">
+        <div>
+          <label for="comp-a">Primeira cidade</label>
+          <select id="comp-a"></select>
+        </div>
+        <div>
+          <label for="comp-b">Segunda cidade</label>
+          <select id="comp-b"></select>
+        </div>
+      </div>
+      <div id="tabela-comparacao"><p class="sutil">Consulte pelo menos duas cidades para comparar.</p></div>
+    </section>
+  </main>
+
+  <footer>Dados: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> · Frontend → API Gateway → microsserviços</footer>
+
+  <script src="wmo.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
